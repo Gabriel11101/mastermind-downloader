@@ -1,0 +1,41 @@
+{
+    "name": "Mastermind Downloader",
+    "description": "Chrome extension to download courses from mastermind.ac",
+    "version": "1.0.0",
+    "author": "Gabriel11101",
+    "homepage_url": "https://github.com/Gabriel11101/mastermind-downloader",
+    "manifest_version": 3,
+    "icons": {
+        "16": "assets/icon16.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_icon": {
+          "16": "assets/icon16.png",
+          "48": "assets/icon48.png",
+          "128": "assets/icon128.png"
+        }
+    },
+    "permissions": [
+        "declarativeContent",
+        "activeTab",
+        "tabs",
+        "downloads",
+        "scripting"
+    ],
+    "content_scripts": [
+        {
+          "matches": ["*://www.mastermind.ac/courses/take/*"],
+          "js": ["content.js", "inject.js"],
+          "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [{
+        "resources": ["myscript.js"],
+        "matches": ["<all_urls>"]
+      }]
+}
