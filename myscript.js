@@ -46,11 +46,11 @@ function downloadContents() {
     var link = document.createElement('a');
     link.href = 'data:text/plain;charset=UTF-8,' + encodeURIComponent(names.join('\n'));
     //set default action on link to force download, and set default filename:
-    link.download = 'index.txt';     
+    link.download = course_name.replace(/[ &\/\\#,+()$~%.'":*?<>{}]/g, '') + ' index.txt';     
 
     link.click();
 
-    window.postMessage(msgdata, "*");
+    // window.postMessage(msgdata, "*");
 }
 
 intercept_response(function(response) {
