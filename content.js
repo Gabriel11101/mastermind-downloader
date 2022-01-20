@@ -27,7 +27,7 @@ window.addEventListener("message", function(event) {
                     }
                 }
 
-                var filename = course_name.replace(/[/\\?%*:|"<>]/g, '-') + '/' + chapter_name.replace(/[/\\?%*:|"<>]/g, '-') + '/' + name.replace(/[/\\?%*:|"<>]/g, '-') + '.mp4';
+                var filename = course_name.replace(/[^A-Za-z0-9]/g, "-") + '/' + chapter_name.replace(/[^A-Za-z0-9]/g, "-") + '/' + name.replace(/[^A-Za-z0-9]/g, "-") + '.mp4';
 
                 chrome.runtime.sendMessage({msg: "Download", url: url, filename: filename}, function (response) {})
             }
