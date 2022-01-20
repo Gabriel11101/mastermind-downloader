@@ -50,7 +50,7 @@ function downloadContents() {
 
     link.click();
 
-    // window.postMessage(msgdata, "*");
+    window.postMessage(msgdata, "*");
 }
 
 intercept_response(function(response) {
