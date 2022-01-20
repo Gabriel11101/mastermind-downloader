@@ -22,6 +22,7 @@ function downloadContents() {
     
     var downloadData = [];
     var chaptersData = [];
+    var names = [];
     for (let i = 0; i < chapters.length; i++) {
         var chapter_name = chapters[i]["name"];
         var chapter_id = chapters[i]["id"];
@@ -34,11 +35,20 @@ function downloadContents() {
         
         var downloadID = contents[i]["contentable"];
         var downloadURL = `https://www.mastermind.ac/api/course_player/v2/lessons/${downloadID}/download`;
-        downloadData.push({"name": contents[i]["name"], "chapter_id": contents[i]["chapter_id"], "url": downloadURL});
+        var name = contents[i]["name"];
+        names.push(name);
+        downloadData.push({"name": name, "chapter_id": contents[i]["chapter_id"], "url": downloadURL});
     }
     var course_name = course["name"]
 
     var msgdata = {"chaptersData": chaptersData, "downloadData": downloadData, "course_name": course_name}
+
+    var link = document.createElement('a');
+    link.href = 'data:text/plain;charset=UTF-8,' + encodeURIComponent(names.join('\n'));
+    //set default action on link to force download, and set default filename:
+    link.download = 'index.txt';     
+
+    link.click();
 
     window.postMessage(msgdata, "*");
 }
