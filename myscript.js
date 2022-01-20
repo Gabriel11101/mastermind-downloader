@@ -46,7 +46,7 @@ function downloadContents() {
     var link = document.createElement('a');
     link.href = 'data:text/plain;charset=UTF-8,' + encodeURIComponent(names.join('\n'));
     //set default action on link to force download, and set default filename:
-    link.download = course_name.replace(/[|&;$%@"<>()+,]/g, "") + ' index.txt';     
+    link.download = course_name.replace(/[/\\?%*:|"<>]/g, '-') + ' index.txt';     
 
     link.click();
 
